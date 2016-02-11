@@ -14,7 +14,7 @@ namespace Calculator
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+            Application.Enab   leVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
