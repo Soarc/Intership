@@ -1,0 +1,110 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Calculator
+{
+    public partial class Form1 : Form
+    {
+        private bool _isEqualButtonPressed = false;
+        private string _action = "";
+        private string _previous = "";
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void NumberButton_Click(object o, EventArgs e) 
+        {
+
+            if (!_isEqualButtonPressed && textBox1.Text != "0")
+            {
+                textBox1.Text += (o as Button).Text;
+            }
+            else
+            {
+                textBox1.Text = (o as Button).Text;
+            }
+            _isEqualButtonPressed = false;
+        }
+
+        private void ActionButton_Click(object o, EventArgs e) 
+        {
+            Button but = o as Button;
+
+            _action = but.Text;
+            _previous = textBox1.Text;
+            textBox1.Text = "";
+        }
+
+        private void EqualButton_Click(object sender, EventArgs e)
+        {
+            switch (_action)
+            {
+                case "+":
+                    textBox1.Text = Actions.Add(double.Parse(_previous), double.Parse(textBox1.Text));
+                    _action = "";
+                    break;
+
+                case "-":
+                    textBox1.Text = Actions.Subtract(double.Parse(_previous), double.Parse(textBox1.Text)); ;
+                    _action = "";
+                    break;
+
+                case "*":
+                    textBox1.Text = Actions.Multy(double.Parse(_previous), double.Parse(textBox1.Text));
+                    _action = "";
+                    break;
+
+                case "/":
+                    textBox1.Text = Actions.Divide(double.Parse(_previous), double.Parse(textBox1.Text));
+                    _action = "";
+                    break;
+            }
+
+            _isEqualButtonPressed = true;
+
+        }
+
+        
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Calculator
+{
+    public static class Actions
+    {
+        public static string Add(double num1, double num2)
+        {
+            return (num1 + num2).ToString();
+        }
+
+        public static string Subtract(double num1, double num2) 
+        {
+            return (num1 - num2).ToString(); 
+        }
+        
+        public static string Multy(double num1, double num2) 
+        {
+            return (num1 * num2).ToString();
+        }
+
+        public static string Divide(double num1, double num2) 
+        {
+            return (num1 / num2).ToString();
+        }
+    }
+}
