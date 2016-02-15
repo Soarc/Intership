@@ -11,9 +11,59 @@ namespace Intership.Messenger.Server
         long _messageId;
         DateTime _timestamp;
         string _message;
-
         int _clientId;
 
+        public long MessageId
+        {
+            get
+            {
+                return _messageId;
+            }
+
+            set
+            {
+                _messageId = value;
+            }
+        }
+
+        public DateTime Timestamp
+        {
+            get
+            {
+                return _timestamp;
+            }
+
+            set
+            {
+                _timestamp = value;
+            }
+        }
+
+        public string MessageText
+        {
+            get
+            {
+                return _message;
+            }
+
+            set
+            {
+                _message = value;
+            }
+        }
+
+        public int ClientId
+        {
+            get
+            {
+                return _clientId;
+            }
+
+            set
+            {
+                _clientId = value;
+            }
+        }
 
         public Message()
         {
@@ -49,25 +99,24 @@ namespace Intership.Messenger.Server
         public void ReadBytes(byte[] bytes)
         {
 
-
-            var messageIdBytes = new byte[8];
-            Array.Copy(bytes, 0, messageIdBytes, 0, 8);
+           // var t = sizeof(TEst);
+            var messageIdBytes = new byte[sizeof(long)];
+            Array.Copy(bytes, 0, messageIdBytes, 0, messageIdBytes.Length);
             _messageId = BitConverter.ToInt64(messageIdBytes, 0);
 
-            var timeStampBytes = new byte[8];
-            Array.Copy(bytes, 0, messageIdBytes, messageIdBytes.Length, 8);
-            _timestamp = new DateTime(BitConverter.ToInt64(timeStampBytes, 0));
+            var timeStampBytes = new byte[sizeof(long)];
+            Array.Copy(bytes, 0, messageIdBytes, messageIdBytes.Length, timeStampBytes.Length);
+            _timestamp =  DateTime.FromBinary(BitConverter.ToInt64(timeStampBytes, 0));
 
-            var clientIdBytes = new byte[4];
-            Array.Copy(bytes, 0, clientIdBytes, messageIdBytes.Length + timeStampBytes.Length, 4);
+            var clientIdBytes = new byte[sizeof(int)];
+            Array.Copy(bytes, 0, clientIdBytes, messageIdBytes.Length + timeStampBytes.Length,clientIdBytes.Length);
             _clientId = BitConverter.ToInt32(clientIdBytes, 0);
 
             _message = System.Text.Encoding.UTF8.GetString(bytes, messageIdBytes.Length + timeStampBytes.Length + clientIdBytes.Length, bytes.Length - 2 * sizeof(long) - sizeof(int));
 
         }
 
-
-
+      
 
 
     }

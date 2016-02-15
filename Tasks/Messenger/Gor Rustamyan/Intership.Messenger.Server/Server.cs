@@ -14,6 +14,8 @@ namespace Intership.Messenger.Server
         TcpListener _listener;
         List<Client> _clients;
 
+        int _currentClientId;
+
         public ServerConfiguration Config
         {
             get; private set;
@@ -50,15 +52,79 @@ namespace Intership.Messenger.Server
 
             _clients.Add(newClient);
 
-       
+
+
+            newClient.ClientId = ++_currentClientId;
 
             var sendThread = new Thread(newClient.StartSend);
             sendThread.Start();
 
+           
+
+
+            newClient.SendMessage(new Message
+            {
+                ClientId = 0,
+                MessageText = $"CLIENTID={newClient.ClientId}",
+            });
+
+            foreach (var client in _clients)
+            {
+                if (client == newClient)
+                    continue;
+
+                newClient.SendMessage(new Message
+                {
+                    ClientId = 0,
+                    MessageText =$"CLIENTID={client.ClientId};NICKNAME={client.Nickname}",
+                });
+
+            }
+
+
+            newClient.MessageReceived += OnMessageReceived;
+
             var receiveThread = new Thread(newClient.StartReceive);
             receiveThread.Start();
+
+          
+
+          
+          
            
         }
+
+        void OnMessageReceived(Client client, Message message)
+        {
+            if (!client.NicknameReceived)
+            {
+                client.Nickname = message.MessageText;
+                client.NicknameReceived = true;
+                Broadcast(new Message
+                {
+                    ClientId = 0,
+                    MessageText = $"NEWCLIENTID={client.ClientId};NICKNAME={client.Nickname}"
+                });
+
+                
+                return;
+
+            }
+
+            Broadcast(message);
+
+          
+            
+        }
+
+        void Broadcast(Message message)
+        {
+            foreach (var client in _clients)
+            {
+                client.SendMessage(message);
+            }
+        }
+
 
         public void Stop()
         {
