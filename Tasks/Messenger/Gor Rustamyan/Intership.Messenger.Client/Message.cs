@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intership.Messenger.Server
+namespace Intership.Messenger.Client
 {
-    class Message
+   public  class Message
     {
         long _messageId;
         DateTime _timestamp;
@@ -99,24 +99,21 @@ namespace Intership.Messenger.Server
         public void ReadBytes(byte[] bytes)
         {
 
-           // var t = sizeof(TEst);
+            // var t = sizeof(TEst);
             var messageIdBytes = new byte[sizeof(long)];
             Array.Copy(bytes, 0, messageIdBytes, 0, messageIdBytes.Length);
             _messageId = BitConverter.ToInt64(messageIdBytes, 0);
 
             var timeStampBytes = new byte[sizeof(long)];
-            Array.Copy(bytes, messageIdBytes.Length, timeStampBytes,0, timeStampBytes.Length);
-            _timestamp =  DateTime.FromBinary(BitConverter.ToInt64(timeStampBytes, 0));
+            Array.Copy(bytes, messageIdBytes.Length, timeStampBytes, 0, timeStampBytes.Length);
+            _timestamp = DateTime.FromBinary(BitConverter.ToInt64(timeStampBytes, 0));
 
             var clientIdBytes = new byte[sizeof(int)];
-            Array.Copy(bytes, messageIdBytes.Length+ timeStampBytes.Length, clientIdBytes,0,clientIdBytes.Length);
+            Array.Copy(bytes, messageIdBytes.Length + timeStampBytes.Length, clientIdBytes, 0, clientIdBytes.Length);
             _clientId = BitConverter.ToInt32(clientIdBytes, 0);
 
             _message = System.Text.Encoding.UTF8.GetString(bytes, messageIdBytes.Length + timeStampBytes.Length + clientIdBytes.Length, bytes.Length - 2 * sizeof(long) - sizeof(int));
-
         }
-
-      
 
 
     }

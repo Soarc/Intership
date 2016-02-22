@@ -65,7 +65,7 @@ namespace Intership.Messenger.Server
             newClient.SendMessage(new Message
             {
                 ClientId = 0,
-                MessageText = $"CLIENTID={newClient.ClientId}",
+                MessageText = $"ACTION={ServerActions.ClientId};CLIENTID={newClient.ClientId}",
             });
 
             foreach (var client in _clients)
@@ -76,7 +76,7 @@ namespace Intership.Messenger.Server
                 newClient.SendMessage(new Message
                 {
                     ClientId = 0,
-                    MessageText =$"CLIENTID={client.ClientId};NICKNAME={client.Nickname}",
+                    MessageText =$"ACTION={ServerActions.NewClientConnected};NEWCLIENTID={client.ClientId};NICKNAME={client.Nickname}",
                 });
 
             }
@@ -103,7 +103,7 @@ namespace Intership.Messenger.Server
                 Broadcast(new Message
                 {
                     ClientId = 0,
-                    MessageText = $"NEWCLIENTID={client.ClientId};NICKNAME={client.Nickname}"
+                    MessageText = $"ACTION={ServerActions.NewClientConnected};NEWCLIENTID={client.ClientId};NICKNAME={client.Nickname}"
                 });
 
                 
@@ -129,5 +129,13 @@ namespace Intership.Messenger.Server
         public void Stop()
         {
         }
+    }
+
+    public enum ServerActions
+    {
+        ClientId,
+        NewClientConnected,
+        ClientDisconnected
+
     }
 }
