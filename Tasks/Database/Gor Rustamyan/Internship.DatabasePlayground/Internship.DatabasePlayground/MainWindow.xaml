@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Internship.DatabasePlayground"
         mc:Ignorable="d"
         Title="MainWindow" Height="533.45" Width="525">
-    <Grid>
+    <Grid Margin="0,0,-8,-21">
         <TextBox x:Name="txtDataSource" HorizontalAlignment="Left" Height="23" Margin="99,32,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="White"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="19,33,0,0" TextWrapping="Wrap" Text="Server IP" VerticalAlignment="Top"/>
 
