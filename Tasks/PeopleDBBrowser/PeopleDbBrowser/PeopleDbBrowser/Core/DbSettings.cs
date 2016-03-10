@@ -13,7 +13,7 @@ namespace Internship.PeopleDbBrowser.Core
         public string Login { get; set; }
         public string Password { get; set; }
         public string Initialcatalogue { get; set; }
-
+       
 
         public void Save()
         {
