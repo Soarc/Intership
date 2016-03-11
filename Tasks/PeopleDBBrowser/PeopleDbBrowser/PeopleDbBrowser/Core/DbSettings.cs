@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,21 @@ namespace Internship.PeopleDbBrowser.Core
 
         public void Save()
         {
+            string path = "ConnectionString.txt";
+            if (!File.Exists(path))
+            {
+                FileStream fs = File.Create(path);
+            }
 
+            //StreamReader strReader = new StreamReader(path);
+            string connsctionString = "Data Source =" + Datasource + "; Initial Catalog =" + Initialcatalogue + " ; Integrated Security =" + IntegratedSecurity +
+            ";User ID =" + Login + "; Password =" + Password + ";";
+            File.AppendAllText(path, connsctionString+ "\n");
         }
 
         public void Load()
         {
-
+            string[] lines = File.ReadAllLines(@"ConnectionString.txt");
         }
     }
 }
