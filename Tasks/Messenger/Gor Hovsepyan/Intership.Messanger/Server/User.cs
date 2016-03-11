@@ -1,17 +1,27 @@
-﻿namespace MessangerServer
+﻿using System.Net.Sockets;
+using System;
+
+namespace MessangerServer
 {
     public class User
     {
-        public string DisplayName { get; set; }
+        TcpClient _client;
 
-        public int Id { get; set; }
-
-        public int Port { get; set; }
-        
-        public Message Send()
+        public User(TcpClient client)
         {
-            Message mess = null;
-            return mess;
+            client = _client;
+        }
+
+
+
+       public void StartSend()
+        {
+
+        }
+
+        public void StartReceived()
+        {
+
         }
 
 

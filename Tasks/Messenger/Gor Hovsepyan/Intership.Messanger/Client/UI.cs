@@ -11,7 +11,7 @@ namespace MessangerClient
     {
         List<Message> messages;
         List<User> users;
-        public void SendMsգ(string nick, string msg) { }
+        public void SendMsg(string nick, string msg) { }
         public void Connect() { }
 
         public void Disconnect() { }

@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Messenger.Server
+{
+    public class Message
+    {
+        long _messageID;
+        string _message;
+        DateTime _timestamp;
+        int _clientID;
+
+        public Message() 
+        {
+            _message = string.Empty;
+            _messageID = 0;
+            _timestamp = DateTime.MinValue;
+            _clientID = 0;
+        }
+
+        public byte[] GetBytes() 
+        {
+            var messageIDBytes = BitConverter.GetBytes(_messageID);
+            var timeStampBytes = BitConverter.GetBytes(_timestamp.ToBinary());
+            var messageBytes = Encoding.UTF8.GetBytes(_message);
+            var clientIdBytes = BitConverter.GetBytes(_clientID);
+            
+            var result = new byte[2 * messageBytes.Length + timeStampBytes.Length + clientIdBytes.Length];
+
+            Array.Copy(messageIDBytes, 0, result, 0, messageIDBytes.Length);
+            Array.Copy(timeStampBytes, 0, result, messageBytes.Length, timeStampBytes.Length);
+            Array.Copy(clientIdBytes, 0, result, messageBytes.Length + timeStampBytes.Length, clientIdBytes.Length);
+            Array.Copy(messageBytes, 0, result, messageIDBytes.Length + timeStampBytes.Length + clientIdBytes.Length, messageBytes.Length);
+
+            return result;
+        }
+
+        public void ReadBytes(byte[] buffer) 
+        {
+            byte[] messageIDBytes = new byte[sizeof(long)];
+            Array.Copy(buffer, 0, messageIDBytes, 0, messageIDBytes.Length);
+            _messageID = BitConverter.ToInt64(messageIDBytes,0);
+
+            byte[] timeStampBytes = new byte[sizeof(long)];
+            Array.Copy(buffer,messageIDBytes.Length,timeStampBytes,0,timeStampBytes.Length);
+            _timestamp = DateTime.FromBinary(BitConverter.ToInt64(timeStampBytes,0));
+
+            byte[] clientIDBytes = new byte[sizeof(int)];
+            Array.Copy(buffer,messageIDBytes.Length + timeStampBytes.Length, clientIDBytes,0,clientIDBytes.Length);
+            _clientID = BitConverter.ToInt32(clientIDBytes,0);
+
+            byte[] messageBytes = new byte[buffer.Length - messageIDBytes.Length - timeStampBytes.Length - clientIDBytes.Length];
+            Array.Copy(buffer, messageIDBytes.Length + timeStampBytes.Length + clientIDBytes.Length,messageBytes,0,messageBytes.Length);
+            _message = Encoding.UTF8.GetString(messageBytes);
+        }
+
+       
+    }
+}

@@ -1,0 +1,33 @@
+﻿<Window x:Class="DatabasePlayground.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DatabasePlayground"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="637.467" Width="644.737">
+    <Grid>
+        <TextBlock x:Name="serverId" HorizontalAlignment="Left" Margin="97,102,0,0" TextWrapping="Wrap" Text="SQlServerName" VerticalAlignment="Top"/>
+        <TextBox x:Name="serverIdTxt" HorizontalAlignment="Left" Height="23" Margin="205,102,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.483,-3.87"/>
+        <GroupBox  x:Name="groupBox" Header="GroupBox" HorizontalAlignment="Left" Margin="50,130,0,0" VerticalAlignment="Top" Height="234" Width="287">
+            <Grid Margin="0,10,0,22">
+
+                <RadioButton x:Name="WindradioButton" Content="Windows" HorizontalAlignment="Left" Margin="0,6,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+
+                <RadioButton x:Name="SqlradioButton" Content="SQL Auten" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                <TextBox x:Name="LoginTxt" HorizontalAlignment="Left" Height="23" Margin="140,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                <TextBox x:Name="PassTxt"  HorizontalAlignment="Left" Height="23" Margin="140,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                <TextBlock x:Name="Login" HorizontalAlignment="Left" Margin="0,100,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Background="Maroon" Grid.Column="1"/>
+                <TextBlock x:Name="Pass" HorizontalAlignment="Left" Margin="0,135,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Background="Maroon" Grid.Column="1"/>
+            </Grid>
+        </GroupBox>
+
+        <TextBox x:Name="CommandTxt"  HorizontalAlignment="Left" Height="70" Margin="343,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="284" RenderTransformOrigin="0.468,-0.714"/>
+        <Button x:Name="ExecuteButton" Content="Execute" HorizontalAlignment="Left" Margin="424,130,0,0" VerticalAlignment="Top" Width="75" Background="Coral" Click="ExecuteButton_Click"/>
+        <TextBlock x:Name="status" HorizontalAlignment="Left" Margin="343,202,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBox x:Name="Databasetxt" HorizontalAlignment="Left" Height="23" Margin="167,382,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="Databaset" HorizontalAlignment="Left" Margin="50,383,0,0" TextWrapping="Wrap" Text="Database Name" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="True" HorizontalAlignment="Left" Margin="77,454,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.667,-3.077" Width="363" Height="98"/>
+
+    </Grid>
+</Window>
