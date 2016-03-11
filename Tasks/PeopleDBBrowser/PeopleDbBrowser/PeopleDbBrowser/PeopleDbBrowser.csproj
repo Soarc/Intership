@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\DbColumn.cs" />
     <Compile Include="DAL\DbCreator.cs" />
     <Compile Include="DAL\DbManager.cs" />
     <Compile Include="Core\DbSettings.cs" />
