@@ -12,7 +12,7 @@ namespace Internship.PeopleDbBrowser.DAL
 
         public DbCreator(DbManager manager)
         {
-            
+            _manager = manager;
         }
         public bool IsDbCreated()
         {
