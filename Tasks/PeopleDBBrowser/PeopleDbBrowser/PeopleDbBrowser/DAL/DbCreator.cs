@@ -15,18 +15,31 @@ namespace Internship.PeopleDbBrowser.DAL
         DbManager _manager;
         Dictionary<string, string> _PrymeDict;
         List<string> column;
+        List<string> DbList;
 
         public DbCreator(DbManager manager)
         {
             _PrymeDict = new Dictionary<string, string>();
             column = new List<string>();
+            column.Add("name");
             _manager = manager;
+            DbList = new List<string>();
         }
-        public bool IsDbCreated()
+        public bool IsDbCreated(string tableName)
         {
-            
+            bool gago = false; ;
           var data =_manager.ExecuteQuery("Sys.Databases", column, null);
-            return true;
+            foreach (var item in data)
+            {
+                if (item.ToString() == tableName)
+                    gago = true;
+
+
+            }
+            if (gago == true)
+                return true;
+            else
+                return false;
         }
 
         public void CreateDb(string str)
@@ -59,6 +72,7 @@ namespace Internship.PeopleDbBrowser.DAL
             new DbColumn { Name = "CityId", Type = "INT",IsForeign = "Cities(CityId)"},
             new DbColumn { Name = "CommunityId", Type = "INT", IsForeign = "Communities(CommunityId)"},
             new DbColumn {Name = "StreetId",Type = "INT",IsForeign = "Streets(StreetId)" }
+            //homeId
             });
             _PrymeDict.Add("Addresses", "AddressId");
             this.CreateTable("Persons", new List<DbColumn>() {
