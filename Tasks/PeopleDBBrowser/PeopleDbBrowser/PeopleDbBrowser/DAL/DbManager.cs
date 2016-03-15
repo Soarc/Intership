@@ -74,15 +74,48 @@ namespace Internship.PeopleDbBrowser.DAL
 
         public void Delete(string table, int primKey)
         {
+            string primKeyCol = DBCreator.GetTablePrimaryKey(table);
+            string query = $"DELETE FROM {table} WHERE {primKeyCol}={primKey}";
         }
 
-        public void UpdateData(string table, List<object> col, List<object> val, string cond)
+        public int UpdateData(string table, List<object> col, List<object> val, string cond)
         {
+            string query = $"UPDATE {table} SET ";
 
+            string queryParts = "";
+
+            for (int i = 0; i < col.Count; i++)
+            {
+                queryParts += $"{col[i]}={val[i]}, ";
+            }
+
+            queryParts = queryParts.Substring(0, queryParts.Length - 2);
+
+            query += queryParts;
+            query += $"WHERE {cond}";
+
+            return ExecuteCustomQuery(query);
         }
 
-        public void ExecuteScalar(string table, string col, string agg)
+        public Object ExecuteScalar(string table, string col, string agg)
         {
+            string query = $"SELECT {agg}({col}) FROM {table}";
+
+            object result = null;
+
+            if (_connection != null)
+            {
+                _connection.Open();
+
+                using (SqlCommand cmd = new SqlCommand(query, _connection))
+                {
+                    result = cmd.ExecuteScalar();
+                }
+
+                _connection.Close();
+            }
+
+            return result;
         }
 
         
@@ -104,6 +137,8 @@ namespace Internship.PeopleDbBrowser.DAL
             }
             return rowsAffected;
         }
+
+
 
 
         
