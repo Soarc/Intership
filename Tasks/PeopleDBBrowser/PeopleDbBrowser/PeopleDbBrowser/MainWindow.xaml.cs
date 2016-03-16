@@ -24,5 +24,31 @@ namespace Internship.PeopleDbBrowser
         {
             InitializeComponent();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = new MainWindow();
+            mainWindow.DataContext = this.DataContext;
+            mainWindow.Show();
+
+
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            var dc =(Workspaces.MainWorkspace) this.DataContext;
+            dc.Items.Add("new item " + dc.Items.Count);
+
+            dc.DBName = "Settet from button";
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var dc = (Workspaces.MainWorkspace)this.DataContext;
+            dc.Items.Remove((string)((Button)sender).DataContext);
+
+           // dc.DBName = "Settet from button";
+
+        }
     }
 }
