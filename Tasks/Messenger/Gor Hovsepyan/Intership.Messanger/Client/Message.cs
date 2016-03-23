@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace MessangerServer
+namespace MessangerClient
 {
     public class Message
     {
@@ -98,13 +101,13 @@ namespace MessangerServer
 
         public void ReadBytes(byte[] bytes)
         {
-            
+
             var messageBytes = Encoding.UTF8.GetBytes(_message);
 
-            byte[] a  = new byte[sizeof(long)];
+            byte[] a = new byte[sizeof(long)];
             byte[] b = new byte[sizeof(long)];
             byte[] c = new byte[sizeof(int)];
-            
+           
 
 
             
@@ -112,13 +115,14 @@ namespace MessangerServer
             Array.Copy(bytes, 0, a, 0, 8);
             Array.Copy(bytes, 8, b, 0, 8);
             Array.Copy(bytes, 16, c, 0, 4);
-           
 
-            var messageid = BitConverter.ToInt64(a, 0);
-            var timeStamp = DateTime.FromBinary(BitConverter.ToInt64(b, 0));
-           
-            var clientid = BitConverter.ToInt32(c, 0);
-            var message = Encoding.UTF8.GetString(bytes, a.Length + b.Length + c.Length, bytes.Length - 2 * sizeof(long) - sizeof(int)); 
+
+
+            _messageId = BitConverter.ToInt64(a, 0);
+            _timestamp = DateTime.FromBinary(BitConverter.ToInt64(b, 0));
+
+            _clientId = BitConverter.ToInt32(c, 0);
+            _message = Encoding.UTF8.GetString(bytes, a.Length + b.Length + c.Length, bytes.Length - 2 * sizeof(long) - sizeof(int));
 
 
 
