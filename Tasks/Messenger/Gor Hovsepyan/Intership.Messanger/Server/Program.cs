@@ -23,7 +23,7 @@ namespace MessangerServer
             }
 
             server.Start();
-
+            
             Console.ReadLine();
         }
     }
