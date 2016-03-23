@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class ServerConfiguration
+  public   class ServerConfiguration
     {
         public int Port { get; set; }
         public int Maxclients { get; set; }

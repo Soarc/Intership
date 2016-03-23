@@ -13,7 +13,7 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (components != null)) 
             {
                 components.Dispose();
             }
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.MessangerView = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextMessage = new System.Windows.Forms.TextBox();
             this.SendBt = new System.Windows.Forms.Button();
             this.UsersList = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
@@ -42,13 +42,13 @@
             this.MessangerView.Size = new System.Drawing.Size(554, 316);
             this.MessangerView.TabIndex = 0;
             // 
-            // textBox1
+            // TextMessage
             // 
-            this.textBox1.Location = new System.Drawing.Point(29, 435);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(554, 62);
-            this.textBox1.TabIndex = 1;
+            this.TextMessage.Location = new System.Drawing.Point(29, 435);
+            this.TextMessage.Multiline = true;
+            this.TextMessage.Name = "TextMessage";
+            this.TextMessage.Size = new System.Drawing.Size(554, 62);
+            this.TextMessage.TabIndex = 1;
             // 
             // SendBt
             // 
@@ -59,6 +59,7 @@
             this.SendBt.TabIndex = 2;
             this.SendBt.Text = "Send";
             this.SendBt.UseVisualStyleBackColor = true;
+            this.SendBt.Click += new System.EventHandler(this.SendBt_Click);
             // 
             // UsersList
             // 
@@ -75,10 +76,11 @@
             this.ClientSize = new System.Drawing.Size(799, 509);
             this.Controls.Add(this.UsersList);
             this.Controls.Add(this.SendBt);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TextMessage);
             this.Controls.Add(this.MessangerView);
             this.Name = "MessangerForm";
             this.Text = "MessangerForm";
+            this.Load += new System.EventHandler(this.MessangerFormLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,7 +89,7 @@
         #endregion
 
         private System.Windows.Forms.ListBox MessangerView;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextMessage;
         private System.Windows.Forms.Button SendBt;
         private System.Windows.Forms.ListBox UsersList;
     }
