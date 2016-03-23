@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Internship.PeopleDbBrowser.Workspaces
 {
-    class MainWorkspace:ViewModelBase
+    public class MainWorkspace:ViewModelBase
     {
         string _dbName;
         string _other;      
