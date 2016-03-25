@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="Workspaces\MainWorkspace.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,6 +65,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\DbColumn.cs" />
     <Compile Include="DAL\DbCreator.cs" />
     <Compile Include="DAL\DbManager.cs" />
     <Compile Include="Core\DbSettings.cs" />
@@ -101,7 +104,6 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
-    <Folder Include="Workspaces\" />
     <Folder Include="WorkspaceViews\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
