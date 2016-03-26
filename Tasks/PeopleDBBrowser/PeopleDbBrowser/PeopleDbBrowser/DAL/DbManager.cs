@@ -21,6 +21,9 @@ namespace Internship.PeopleDbBrowser.DAL
         
         public void Initialize()
         {
+            _dbSetting = new DbSettings();
+            _dbSetting.Load();
+
             // Creating ConnectionString from DbSettings
             var builder = new SqlConnectionStringBuilder();
             builder.DataSource = _dbSetting.Datasource;
@@ -72,10 +75,11 @@ namespace Internship.PeopleDbBrowser.DAL
             return ExecuteCustomQuery(delString);
         }
 
-        public void Delete(string table, int primKey)
+        public int Delete(string table, int primKey)
         {
             string primKeyCol = DBCreator.GetTablePrimaryKey(table);
             string query = $"DELETE FROM {table} WHERE {primKeyCol}={primKey}";
+            return ExecuteCustomQuery(query);
         }
 
         public int UpdateData(string table, List<object> col, List<object> val, string cond)
