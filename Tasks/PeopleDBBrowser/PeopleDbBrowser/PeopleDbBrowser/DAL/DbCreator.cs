@@ -48,7 +48,7 @@ namespace Internship.PeopleDbBrowser.DAL
             _manager.ExecuteCustomQuery(createQuery);
             this.CreateTable("Regions", new List<DbColumn>() {
                 new DbColumn {Name = "RegionId",Type = "INT",isIdentity = true,IsPrimary = true  },
-                new DbColumn {Name = "Reion",Type = "NVARCHAR(MAX)",IsNull = false }
+                new DbColumn {Name = "Region",Type = "NVARCHAR(MAX)",IsNull = false }
             });
             _PrymeDict.Add("Regions", "RegionId");
             this.CreateTable("Cities", new List<DbColumn>() {
@@ -65,13 +65,18 @@ namespace Internship.PeopleDbBrowser.DAL
                 new DbColumn {Name = "StreetId",Type = "INT",isIdentity = true,IsPrimary = true  },
                 new DbColumn {Name = "Street",Type = "NVARCHAR(MAX)",IsNull = false }
             });
-            _PrymeDict.Add("Streets", "StreetId");
+            this.CreateTable("Houses", new List<DbColumn>() {
+                new DbColumn {Name = "HouseId",Type = "INT",isIdentity = true,IsPrimary = true  },
+                new DbColumn {Name = "Houses",Type = "NVARCHAR(MAX)",IsNull = false }
+            });
+            _PrymeDict.Add("Houses", "HouseId");
             this.CreateTable("Addresses", new List<DbColumn>() {
             new DbColumn {Name = "AddressId",Type = "INT",isIdentity = true,IsPrimary = true },
             new DbColumn { Name = "RegionId", Type = "INT", IsForeign = "Regions(RegionId)"},
             new DbColumn { Name = "CityId", Type = "INT",IsForeign = "Cities(CityId)"},
             new DbColumn { Name = "CommunityId", Type = "INT", IsForeign = "Communities(CommunityId)"},
-            new DbColumn {Name = "StreetId",Type = "INT",IsForeign = "Streets(StreetId)" }
+            new DbColumn {Name = "StreetId",Type = "INT",IsForeign = "Streets(StreetId)" },
+            new DbColumn {Name = "HouseId",Type = "INT",IsForeign = "Houses(HouseId)" }
             //homeId
             });
             _PrymeDict.Add("Addresses", "AddressId");

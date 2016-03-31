@@ -10,18 +10,23 @@
     <UserControl.DataContext>
         <k:SearchViewModel/>
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <k:ConvertToBool x:Key="converter" />
+    </UserControl.Resources>
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
 
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox Text="{Binding Name}" Grid.Row="0" Margin="24,35,448,21" />
-        <TextBox Text="{Binding LastName}" Grid.Row="0" Margin="232,35,228,21" RenderTransformOrigin="0.355,0.438"/>
-        <TextBox Text="{Binding Patron}" Grid.Row="0" Margin="440,35,28,21"/>
-        <TextBlock x:Name="NameBlock" HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" RenderTransformOrigin="-0.226,0.855" Width="96"/>
-        <TextBlock x:Name="LastNameBlock" HorizontalAlignment="Left" Margin="232,10,0,0" TextWrapping="Wrap" Text="LastName" VerticalAlignment="Top" Width="96"/>
-        <TextBlock x:Name="PatronymicBlock" HorizontalAlignment="Left" Margin="440,10,0,0" TextWrapping="Wrap" Text="Patronymic" VerticalAlignment="Top" RenderTransformOrigin="-0.025,-0.029" Width="97"/>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Margin="24,35,448,21" />
+        <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Margin="232,35,228,21" RenderTransformOrigin="0.355,0.438"/>
+        <TextBox Text="{Binding Patron, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Margin="440,35,28,21"/>
+        <TextBlock x:Name="NameBlock" HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="Անուն" VerticalAlignment="Top" RenderTransformOrigin="-0.226,0.855" Width="96"/>
+        <TextBlock x:Name="LastNameBlock" HorizontalAlignment="Left" Margin="232,10,0,0" TextWrapping="Wrap" Text="Ազգանուն" VerticalAlignment="Top" Width="96"/>
+        <TextBlock x:Name="PatronymicBlock" HorizontalAlignment="Left" Margin="440,10,0,0" TextWrapping="Wrap" Text="Հայրանուն" VerticalAlignment="Top" RenderTransformOrigin="-0.025,-0.029" Width="97"/>
         <ComboBox x:Name="RegionCombo" 
                  ItemsSource="{Binding Regions}"
                  SelectedItem="{Binding SelectedRegion}"
@@ -46,13 +51,20 @@
                     HorizontalAlignment="Left" Margin="328,31,0,-13" 
                     Grid.Row="1" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="HouseCombo" 
+                  Visibility="{Binding  ElementName =RegionCombo}"
                    ItemsSource="{Binding Houses}"
                    SelectedItem="{Binding SelectedHouse}"
                    IsEditable="True" HorizontalAlignment="Left" 
                    Margin="482,31,0,-13" Grid.Row="1" 
                    VerticalAlignment="Top" Width="120"/>
-       
-        <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="275,73,0,-27" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="SearchButton_Click" />
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="131" Margin="55,143,0,-201" Grid.Row="1" VerticalAlignment="Top" Width="512"/>
+        <ComboBox x:Name="comboBox" Visibility="{Binding IsYerevan, Converter={StaticResource converter}, ConverterParameter=i }" IsTextSearchEnabled="True" IsEditable="True" HorizontalAlignment="Left" Margin="174,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="SearchButton" Content="Փնտրել" HorizontalAlignment="Left" Margin="275,73,0,-27" Grid.Row="1" VerticalAlignment="Top" Width="75" Command="{Binding SearchCommand}" />
+        <ListBox x:Name="listBox" ItemsSource="{Binding }"  HorizontalAlignment="Left" Height="131" Margin="55,143,0,-201" Grid.Row="1" VerticalAlignment="Top" Width="512"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="24,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Մարզ" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="174,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Քաղաք/Համայնք" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="328,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Փողոց" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="482,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Տուն" VerticalAlignment="Top" RenderTransformOrigin="-0.245,0.125"/>
+        <TextBlock x:Name="textBlock4" Text="{Binding ValidLabel}" HorizontalAlignment="Left" Margin="174,73,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.446,0.564" />
+        
     </Grid>
 </UserControl>

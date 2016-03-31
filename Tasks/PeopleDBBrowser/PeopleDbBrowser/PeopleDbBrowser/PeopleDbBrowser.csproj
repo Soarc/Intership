@@ -55,8 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Address.cs" />
+    <Compile Include="Core\AddressUnit.cs" />
+    <Compile Include="Core\Person.cs" />
+    <Compile Include="Core\SearchCore.cs" />
+    <Compile Include="CustomSaveCommand.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModelBase.cs" />
+    <Compile Include="ViewModels\ConvertToBool.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Views\SearchEngine.xaml.cs">
       <DependentUpon>SearchEngine.xaml</DependentUpon>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Internship.PeopleDbBrowser.Core
 {
-    class DbSettings
+    public class DbSettings
     {
         public string Datasource { get; set; }
         public bool IntegratedSecurity { get; set; }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Internship.PeopleDbBrowser.Core;
 using System.Collections;
+using System.Data;
 
 namespace Internship.PeopleDbBrowser.DAL
 {
@@ -21,6 +22,9 @@ namespace Internship.PeopleDbBrowser.DAL
         
         public void Initialize()
         {
+            _dbSetting = new DbSettings();
+            _dbSetting.Load();
+
             // Creating ConnectionString from DbSettings
             var builder = new SqlConnectionStringBuilder();
             builder.DataSource = _dbSetting.Datasource;
@@ -38,7 +42,7 @@ namespace Internship.PeopleDbBrowser.DAL
             _connection = new SqlConnection(_connectionString);
         }
 
-        public IEnumerable ExecuteQuery(string table, List<string> col, string cond)
+        public IEnumerable<IDataRecord> ExecuteQuery(string table, List<string> col, string cond)
         {
             throw new NotImplementedException();
 
@@ -72,10 +76,11 @@ namespace Internship.PeopleDbBrowser.DAL
             return ExecuteCustomQuery(delString);
         }
 
-        public void Delete(string table, int primKey)
+        public int Delete(string table, int primKey)
         {
             string primKeyCol = DBCreator.GetTablePrimaryKey(table);
             string query = $"DELETE FROM {table} WHERE {primKeyCol}={primKey}";
+            return ExecuteCustomQuery(query);
         }
 
         public int UpdateData(string table, List<object> col, List<object> val, string cond)
