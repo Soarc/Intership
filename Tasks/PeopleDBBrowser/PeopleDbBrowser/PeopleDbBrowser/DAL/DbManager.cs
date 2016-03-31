@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Internship.PeopleDbBrowser.Core;
 using System.Collections;
+using System.Data;
 
 namespace Internship.PeopleDbBrowser.DAL
 {
@@ -38,12 +39,101 @@ namespace Internship.PeopleDbBrowser.DAL
             _connection = new SqlConnection(_connectionString);
         }
 
-        public IEnumerable ExecuteQuery(string table, List<string> col, string cond)
+        public IEnumerable<IDataRecord> ExecuteQuery(string table, List<string> col, string cond)
         {
-            throw new NotImplementedException();
+            string columns = "";
+            for(int i = 0; i< col.Count ; i++)
+            {
+                columns += col[i] + ", ";
+            }
+            string query = "";
+            if (cond == "")
+            {
+               
+                query = $"SELECT {columns} FROM {table}";
+            }
+            else
+            {
+                query = $"SELECT {columns} FROM {table} WHERE {cond}";
+            }
 
+            if (_connection.State != System.Data.ConnectionState.Open)
+                _connection.Open();
+
+            SqlCommand command = new SqlCommand(query, _connection);
+
+            var reader=command.ExecuteReader();
+
+            while (reader.Read())
+                yield return reader;
+
+            _connection.Close();
         }
-        
+
+        //class ReaderEnumerator : IEnumerator<IDataRecord>
+        //{
+        //    private SqlDataReader reader;
+
+        //    public ReaderEnumerator(SqlDataReader reader)
+        //    {
+        //        this.reader = reader;
+        //    }
+
+        //    public IDataRecord Current
+        //    {
+        //        get
+        //        {
+        //            return reader;
+        //        }
+        //    }
+
+        //    object IEnumerator.Current
+        //    {
+        //        get
+        //        {
+        //            return reader;
+        //        }
+        //    }
+
+        //    public void Dispose()
+        //    {
+        //        reader.Close();
+                
+        //        //throw new NotImplementedException();
+        //    }
+
+        //    public bool MoveNext()
+        //    {
+        //        return reader.Read();
+        //    }
+
+        //    public void Reset()
+        //    {
+        //        //reader.
+        //        //throw new NotImplementedException();
+        //    }
+        //}
+        //class ReaderEnumerable : IEnumerable<IDataRecord>
+        //{
+        //    private SqlDataReader reader;
+
+        //    public ReaderEnumerable(SqlDataReader reader)
+        //    {
+        //        this.reader = reader;
+        //    }
+
+        //    public IEnumerator<IDataRecord> GetEnumerator()
+        //    {
+        //        return new ReaderEnumerator(reader);
+        //    }
+
+        //    IEnumerator IEnumerable.GetEnumerator()
+        //    {
+        //        return this.GetEnumerator();
+        //    }
+        //}
+
+
         public int InsertData(string table, List<string> col, List<string> val)
         {
             string colNames = "(";

@@ -54,7 +54,7 @@ namespace Internship.PeopleDbBrowser.Core
                 {
                     IntegratedSecurity = Convert.ToBoolean(lines[i].Substring(lines[i].LastIndexOf("Integrated Security *** "), lines[i].Length - lines[i].LastIndexOf("Integrated Security *** ")));
 
-                }
+            }
                 if (lines[i].StartsWith("User ID *** ") == true)
                 {
                     Login = lines[i].Substring(lines[i].LastIndexOf("User ID *** "), lines[i].Length - lines[i].LastIndexOf("User ID *** "));

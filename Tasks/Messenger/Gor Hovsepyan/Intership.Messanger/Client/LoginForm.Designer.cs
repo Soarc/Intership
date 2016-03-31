@@ -28,51 +28,87 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.NicknameTxtbox = new System.Windows.Forms.TextBox();
-            this.ServerIpTxtbox = new System.Windows.Forms.TextBox();
+            this.IptxtTxtbox = new System.Windows.Forms.TextBox();
+            this.PortTxtbox = new System.Windows.Forms.TextBox();
             this.LoginBt = new System.Windows.Forms.Button();
-            this.ServerPortTxtbox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.NickTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // NicknameTxtbox
+            // IptxtTxtbox
             // 
-            this.NicknameTxtbox.Location = new System.Drawing.Point(44, 55);
-            this.NicknameTxtbox.Name = "NicknameTxtbox";
-            this.NicknameTxtbox.Size = new System.Drawing.Size(184, 20);
-            this.NicknameTxtbox.TabIndex = 0;
+            this.IptxtTxtbox.Location = new System.Drawing.Point(90, 55);
+            this.IptxtTxtbox.Name = "IptxtTxtbox";
+            this.IptxtTxtbox.Size = new System.Drawing.Size(184, 20);
+            this.IptxtTxtbox.TabIndex = 0;
             // 
-            // ServerIpTxtbox
+            // PortTxtbox
             // 
-            this.ServerIpTxtbox.Location = new System.Drawing.Point(44, 100);
-            this.ServerIpTxtbox.Name = "ServerIpTxtbox";
-            this.ServerIpTxtbox.Size = new System.Drawing.Size(184, 20);
-            this.ServerIpTxtbox.TabIndex = 1;
+            this.PortTxtbox.Location = new System.Drawing.Point(90, 93);
+            this.PortTxtbox.Name = "PortTxtbox";
+            this.PortTxtbox.Size = new System.Drawing.Size(184, 20);
+            this.PortTxtbox.TabIndex = 1;
             // 
             // LoginBt
             // 
-            this.LoginBt.Location = new System.Drawing.Point(96, 187);
+            this.LoginBt.Location = new System.Drawing.Point(124, 138);
             this.LoginBt.Name = "LoginBt";
             this.LoginBt.Size = new System.Drawing.Size(75, 23);
             this.LoginBt.TabIndex = 2;
-            this.LoginBt.Text = "Login";
+            this.LoginBt.Text = "Connect";
             this.LoginBt.UseVisualStyleBackColor = true;
+            this.LoginBt.Click += new System.EventHandler(this.LoginBt_Click);
             // 
-            // ServerPortTxtbox
+            // label1
             // 
-            this.ServerPortTxtbox.Location = new System.Drawing.Point(44, 143);
-            this.ServerPortTxtbox.Name = "ServerPortTxtbox";
-            this.ServerPortTxtbox.Size = new System.Drawing.Size(184, 20);
-            this.ServerPortTxtbox.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "ServerIp";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "ServerPort";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Nickname";
+            // 
+            // NickTxt
+            // 
+            this.NickTxt.Location = new System.Drawing.Point(90, 22);
+            this.NickTxt.Name = "NickTxt";
+            this.NickTxt.Size = new System.Drawing.Size(184, 20);
+            this.NickTxt.TabIndex = 6;
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 320);
-            this.Controls.Add(this.ServerPortTxtbox);
+            this.ClientSize = new System.Drawing.Size(309, 198);
+            this.Controls.Add(this.NickTxt);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.LoginBt);
-            this.Controls.Add(this.ServerIpTxtbox);
-            this.Controls.Add(this.NicknameTxtbox);
+            this.Controls.Add(this.PortTxtbox);
+            this.Controls.Add(this.IptxtTxtbox);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -83,10 +119,13 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox NicknameTxtbox;
-        private System.Windows.Forms.TextBox ServerIpTxtbox;
+        private System.Windows.Forms.TextBox IptxtTxtbox;
+        private System.Windows.Forms.TextBox PortTxtbox;
         private System.Windows.Forms.Button LoginBt;
-        private System.Windows.Forms.TextBox ServerPortTxtbox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox NickTxt;
     }
 }
 
