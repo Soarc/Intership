@@ -55,12 +55,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Address.cs" />
+    <Compile Include="Core\AddressUnit.cs" />
+    <Compile Include="Core\Person.cs" />
+    <Compile Include="Core\SearchCore.cs" />
     <Compile Include="CustomSaveCommand.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="ViewModels\DBSettingsViewModel.cs" />
     <Compile Include="Views\DBSettingsView.xaml.cs">
       <DependentUpon>DBSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ConvertToBool.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="Views\SearchEngine.xaml.cs">
+      <DependentUpon>SearchEngine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Workspaces\MainWorkspace.cs" />
     <Page Include="MainWindow.xaml">
@@ -79,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SearchEngine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DBSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,7 +122,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="WorkspaceViews\" />
