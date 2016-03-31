@@ -30,6 +30,7 @@
         <ComboBox x:Name="RegionCombo" 
                  ItemsSource="{Binding Regions}"
                  SelectedItem="{Binding SelectedRegion}"
+                  
 
                   IsTextSearchEnabled="True" 
                   IsEditable="True" 
@@ -41,6 +42,7 @@
         <ComboBox x:Name="CityCombo" 
                    ItemsSource="{Binding Cities}"
                    SelectedItem="{Binding SelectedCity}"
+                  Visibility="{Binding IsYerevan, Converter={StaticResource converter}, ConverterParameter=i }"
                   IsTextSearchEnabled="True" IsEditable="True"
                   HorizontalAlignment="Left" Margin="174,31,0,-13" 
                   Grid.Row="1" VerticalAlignment="Top" Width="120"/>
@@ -57,7 +59,7 @@
                    IsEditable="True" HorizontalAlignment="Left" 
                    Margin="482,31,0,-13" Grid.Row="1" 
                    VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="comboBox" Visibility="{Binding IsYerevan, Converter={StaticResource converter}, ConverterParameter=i }" IsTextSearchEnabled="True" IsEditable="True" HorizontalAlignment="Left" Margin="174,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="comboBox" Visibility="{Binding IsYerevan, Converter={StaticResource converter}}" IsTextSearchEnabled="True" IsEditable="True" HorizontalAlignment="Left" Margin="174,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="SearchButton" Content="Փնտրել" HorizontalAlignment="Left" Margin="275,73,0,-27" Grid.Row="1" VerticalAlignment="Top" Width="75" Command="{Binding SearchCommand}" />
         <ListBox x:Name="listBox" ItemsSource="{Binding }"  HorizontalAlignment="Left" Height="131" Margin="55,143,0,-201" Grid.Row="1" VerticalAlignment="Top" Width="512"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="24,10,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Մարզ" VerticalAlignment="Top"/>

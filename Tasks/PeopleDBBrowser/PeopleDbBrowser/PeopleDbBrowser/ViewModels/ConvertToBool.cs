@@ -15,7 +15,8 @@ namespace Internship.PeopleDbBrowser.ViewModels
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
+            if ((string)parameter == "i")
+                value = !(bool)value;
             return (bool)value ? Visibility.Visible : Visibility.Collapsed;
         }
 

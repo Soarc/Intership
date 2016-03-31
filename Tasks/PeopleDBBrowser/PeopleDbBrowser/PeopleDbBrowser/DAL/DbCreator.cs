@@ -52,29 +52,35 @@ namespace Internship.PeopleDbBrowser.DAL
             });
             _PrymeDict.Add("Regions", "RegionId");
             this.CreateTable("Cities", new List<DbColumn>() {
+
                 new DbColumn {Name = "CityId",Type = "INT",isIdentity = true,IsPrimary = true  },
-                new DbColumn {Name = "City",Type = "NVARCHAR(MAX)",IsNull = true }
+                new DbColumn {Name = "City",Type = "NVARCHAR(MAX)",IsNull = true },
+                new DbColumn {Name = "RegionId",Type = "INT",IsForeign = "Regions(RegionId)"  }
             });
             _PrymeDict.Add("Cities", "CityId");
             this.CreateTable("Communities", new List<DbColumn>() {
                 new DbColumn {Name = "CommunityId",Type = "INT",isIdentity = true,IsPrimary = true  },
-                new DbColumn {Name = "Community",Type = "NVARCHAR(MAX)",IsNull = false }
+                new DbColumn {Name = "Community",Type = "NVARCHAR(MAX)",IsNull = false },
+                new DbColumn {Name = "RegionId",Type = "INT",IsForeign = "Regions(RegionId)"  }
             });
             _PrymeDict.Add("Communities", "CommunityId");
             this.CreateTable("Streets", new List<DbColumn>() {
                 new DbColumn {Name = "StreetId",Type = "INT",isIdentity = true,IsPrimary = true  },
-                new DbColumn {Name = "Street",Type = "NVARCHAR(MAX)",IsNull = false }
+                new DbColumn {Name = "Street",Type = "NVARCHAR(MAX)",IsNull = false },
+                new DbColumn {Name = "CityId",Type = "INT",IsForeign = "Cities(CityId)"  },
+                new DbColumn {Name = "CommunityId",Type = "INT",IsForeign = "Communities(CommunityId)"  }
             });
             this.CreateTable("Houses", new List<DbColumn>() {
                 new DbColumn {Name = "HouseId",Type = "INT",isIdentity = true,IsPrimary = true  },
-                new DbColumn {Name = "Houses",Type = "NVARCHAR(MAX)",IsNull = false }
+                new DbColumn {Name = "Houses",Type = "NVARCHAR(MAX)",IsNull = false },
+                 new DbColumn {Name = "StreetId",Type = "INT",IsForeign = "Streets(StreetId)"  },
             });
             _PrymeDict.Add("Houses", "HouseId");
             this.CreateTable("Addresses", new List<DbColumn>() {
             new DbColumn {Name = "AddressId",Type = "INT",isIdentity = true,IsPrimary = true },
-            new DbColumn { Name = "RegionId", Type = "INT", IsForeign = "Regions(RegionId)"},
-            new DbColumn { Name = "CityId", Type = "INT",IsForeign = "Cities(CityId)"},
-            new DbColumn { Name = "CommunityId", Type = "INT", IsForeign = "Communities(CommunityId)"},
+            new DbColumn {Name = "RegionId", Type = "INT", IsForeign = "Regions(RegionId)"},
+            new DbColumn {Name = "CityId", Type = "INT",IsForeign = "Cities(CityId)"},
+            new DbColumn {Name = "CommunityId", Type = "INT", IsForeign = "Communities(CommunityId)"},
             new DbColumn {Name = "StreetId",Type = "INT",IsForeign = "Streets(StreetId)" },
             new DbColumn {Name = "HouseId",Type = "INT",IsForeign = "Houses(HouseId)" }
             //homeId
