@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Internship.PeopleDbBrowser.WorkspaceViews
 {
-    class MainWorkSpace
+    public class MainWorkSpace
     {
+        public bool IsSettingsCommandChecked{ get; set; }
+        public bool IsImportCommandChecked { get; set; }
+        public bool IsSearchCommandChecked { get; set; }
         public RelayCommand SettingsCommand { get; set; }
         public RelayCommand ImportCommand { get; set; }
         public RelayCommand SearchCommand { get; set; }

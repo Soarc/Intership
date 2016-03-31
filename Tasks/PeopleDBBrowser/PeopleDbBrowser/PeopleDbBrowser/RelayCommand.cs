@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Internship.PeopleDbBrowser
 {
-    class RelayCommand : ICommand
+   public class RelayCommand : ICommand
     {
         Action _action;
         public RelayCommand(Action action)
