@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Internship.PeopleDbBrowser.Core;
 using System.Collections;
+using System.Data;
 
 namespace Internship.PeopleDbBrowser.DAL
 {
@@ -41,7 +42,7 @@ namespace Internship.PeopleDbBrowser.DAL
             _connection = new SqlConnection(_connectionString);
         }
 
-        public IEnumerable ExecuteQuery(string table, List<string> col, string cond)
+        public IEnumerable<IDataRecord> ExecuteQuery(string table, List<string> col, string cond)
         {
             throw new NotImplementedException();
 
