@@ -62,6 +62,9 @@
     <Compile Include="CustomSaveCommand.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModelBase.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\DBSettingsViewModel.cs" />
     <Compile Include="Views\DBSettingsView.xaml.cs">
       <DependentUpon>DBSettingsView.xaml</DependentUpon>
@@ -72,10 +75,6 @@
       <DependentUpon>SearchEngine.xaml</DependentUpon>
     </Compile>
     <Compile Include="Workspaces\MainWorkspace.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -84,10 +83,10 @@
     <Compile Include="DAL\DbCreator.cs" />
     <Compile Include="DAL\DbManager.cs" />
     <Compile Include="Core\DbSettings.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SearchEngine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

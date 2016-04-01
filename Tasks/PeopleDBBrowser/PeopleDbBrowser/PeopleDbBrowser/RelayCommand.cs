@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Internship.PeopleDbBrowser
 {
-    class RelayCommand : ICommand
+   public class RelayCommand : ICommand
     {
         #region Constructors
 

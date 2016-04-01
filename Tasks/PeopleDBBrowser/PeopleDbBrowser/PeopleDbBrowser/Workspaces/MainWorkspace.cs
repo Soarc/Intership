@@ -10,54 +10,24 @@ namespace Internship.PeopleDbBrowser.Workspaces
 {
     public class MainWorkspace:ViewModelBase
     {
-        string _dbName;
-        string _other;      
+        public bool IsSettingsCommandChecked { get; set; }
+        public bool IsImportCommandChecked { get; set; }
+        public bool IsSearchCommandChecked { get; set; }
+        public RelayCommand SettingsCommand { get; set; }
+        public RelayCommand ImportCommand { get; set; }
+        public RelayCommand SearchCommand { get; set; }
 
-        public string DBName
-        {
-            get
-            {
-                return _dbName;
-            }
-            set
-            {
-                _dbName = value;
-                RaisePropertyChanged(nameof(DBName));
-               
-            }
-        }
-
-        public string OtherProp
-        {
-            get
-            {
-                return _other;
-            }
-            set
-            {
-                _other = value;
-                RaisePropertyChanged(nameof(OtherProp));
-            }
-        }
-
-        public IList<string> Items
-        {
-            get; set;
-        }
+        ViewModelBase CurrentView { get; set; }
 
         public MainWorkspace()
         {
-            DBName = "Ես Աշխատում եմ";
-
-            this.Items = new ObservableCollection<string>()
-            {
-                "Valod1",
-                "Gvidon2",
-                "Test3"
-            };
+            //will be added when all viewModels are added
+            //SettingsCommand = new RelayCommand(() => CurrentView = new settingsViewModel());
+            //SettingsCommand = new RelayCommand(() => CurrentView = new importViewModel());
+            //SettingsCommand = new RelayCommand(() => CurrentView = new searchViewModel());
         }
 
-    
+
 
 
     }
