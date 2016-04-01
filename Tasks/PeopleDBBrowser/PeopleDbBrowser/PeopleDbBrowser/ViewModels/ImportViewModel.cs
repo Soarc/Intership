@@ -8,14 +8,14 @@ namespace Internship.PeopleDbBrowser.ViewModels
 {
     class ImportViewModel
     {
-        List<FolderViewModel> RootFolder;
+        List<Folder> RootFolder;
         public ImportViewModel()
         {
             string[] drives = System.IO.Directory.GetLogicalDrives();
-            RootFolder = new List<FolderViewModel>();
+            RootFolder = new List<Folder>();
             foreach (string str in drives)
             {
-                RootFolder.Add(new FolderViewModel
+                RootFolder.Add(new Folder
                 {
                     Name = str,
                     Path = str

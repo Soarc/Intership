@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Internship.PeopleDbBrowser.ViewModels
 {
-    class FolderViewModel
+    class Folder
     {
-        List<FolderViewModel> _subFolder;
-        public List<FolderViewModel> SubFolder
+        List<Folder> _subFolder;
+        public List<Folder> SubFolder
         {
             get
             {
@@ -22,11 +22,11 @@ namespace Internship.PeopleDbBrowser.ViewModels
 
         private void LoadSubFolders()
         {
-            _subFolder = new List<FolderViewModel>();
+            _subFolder = new List<Folder>();
             var currentFolderInfo = new DirectoryInfo(this.Path);
             var subfolderInfo = currentFolderInfo.GetDirectories();
             foreach (var sf in subfolderInfo)
-                _subFolder.Add(new FolderViewModel
+                _subFolder.Add(new Folder
                 {
                     Name = sf.Name,
                     Path = sf.FullName
@@ -36,8 +36,8 @@ namespace Internship.PeopleDbBrowser.ViewModels
 
         }
 
-        List<FileViewModel> _files;
-        public List<FileViewModel> Files
+        List<File> _files;
+        public List<File> Files
         {
             get
             {
@@ -51,10 +51,10 @@ namespace Internship.PeopleDbBrowser.ViewModels
         {
             var directoryInfo = new DirectoryInfo(this.Name);
             var filesInfo = directoryInfo.GetFiles();
-            _files = new List<FileViewModel>();
+            _files = new List<File>();
 
             foreach (var files in filesInfo)
-                _files.Add(new FileViewModel
+                _files.Add(new File
                 {
                     Name = files.Name,
                     Path = files.FullName

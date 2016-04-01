@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Internship.PeopleDbBrowser.ViewModels
 {
-    class FileViewModel
+    class File
     {
         public string Name { get; set; }
         public string Path { get; set; }

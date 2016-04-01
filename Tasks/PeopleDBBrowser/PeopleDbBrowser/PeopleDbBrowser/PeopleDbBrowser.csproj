@@ -55,8 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\FileViewModel.cs" />
-    <Compile Include="ViewModels\FolderViewModel.cs" />
+    <Compile Include="ViewModels\File.cs" />
+    <Compile Include="ViewModels\Folder.cs" />
     <Compile Include="ViewModels\ImportViewModel.cs" />
     <Compile Include="Views\ImportView.xaml.cs">
       <DependentUpon>ImportView.xaml</DependentUpon>
