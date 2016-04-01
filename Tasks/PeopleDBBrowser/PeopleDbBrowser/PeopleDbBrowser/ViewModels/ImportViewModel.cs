@@ -21,6 +21,7 @@ namespace Internship.PeopleDbBrowser.ViewModels
                     Path = str
                 });
             }
+            //
         }
     }
 }
