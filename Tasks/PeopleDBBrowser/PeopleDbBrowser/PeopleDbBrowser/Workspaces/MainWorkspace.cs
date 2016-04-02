@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Internship.PeopleDbBrowser.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -21,10 +22,9 @@ namespace Internship.PeopleDbBrowser.Workspaces
 
         public MainWorkspace()
         {
-            //will be added when all viewModels are added
-            //SettingsCommand = new RelayCommand(() => CurrentView = new settingsViewModel());
+            SettingsCommand = new RelayCommand(() => CurrentView = new SearchViewModel());
             //SettingsCommand = new RelayCommand(() => CurrentView = new importViewModel());
-            //SettingsCommand = new RelayCommand(() => CurrentView = new searchViewModel());
+            SettingsCommand = new RelayCommand(() => CurrentView = new SearchViewModel());
         }
 
 
